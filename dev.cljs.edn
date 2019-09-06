@@ -1,0 +1,8 @@
+{:main thinktopic.aljabr.core
+ :optimizations :none
+ :checked-arrays :warn
+ :pretty-print true
+ :source-map true
+ :asset-path "js/out"
+ :output-to "resources/public/js/thinktopic.aljabr.test.js"
+ :output-dir "resources/public/js/out"}

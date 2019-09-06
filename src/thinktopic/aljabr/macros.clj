@@ -208,6 +208,17 @@
        ;  ~(reduce* true))
        ))))
 
+(defmacro amap!
+  [a idx expr]
+  `(let [a# ~a
+         l# (alength a#)]
+     (loop  [~idx 0]
+       (if (< ~idx l#)
+         (do
+           (aset a# ~idx ~expr)
+           (recur (inc ~idx)))
+         a#))))
+
 (defmacro def-ndarray
   [dim cast type-hint type-id data-ctor get set & [clj?]]
   (let [type-name (symbol (str "NDArray" dim (name type-id)))
@@ -466,6 +477,40 @@
 
          mp/PNumerical
          (mp/numerical? [_#] true)
+
+         mp/PMathsFunctionsMutable
+         (abs! [m#]
+           (amap! m# i (Math/abs (aget m# i))))
+         (acos! [m#]
+           (amap! m i (Math/acos (aget m# i))))
+         (asin! [m#]
+           (amap! m i (Math/asin (aget m# i))))
+         (atan! [m#]
+           (amap! m i (Math/sin (aget m# i))))
+         (cbrt! [m#]
+           (throw (Exception. "Not implemented")))
+         (ceil! [m#]
+           (amap! m i (Math/ceil (aget m# i))))
+         (cos! [m#]
+           (acos! ~data i (Math/cos (aget m# i))))
+         (cosh! [m#]
+           (amap! ~data i (Math/cosh (aget ~data i))))
+         (exp! [m#]
+           (amap! ~data i (Math/exp (aget ~data i))))
+         (floor! [m#]
+           (amap! ~data i (Math/floor (aget ~data i))))
+         (log! [m#]
+           (amap! ~data i (Math/log (aget ~data i))))
+         (log10! [m#])
+         (round! [m#])
+         (signum! [m#])
+         (sin! [m#])
+         (sinh! [m#])
+         (sqrt! [m#])
+         (tan! [m#])
+         (tanh! [m#])
+         (to-degrees! [m#])
+         (to-radians! [m#])
 
          ;cljs.core/IPrintWithWriter
          ;(cljs.core/-pr-writer [obj# writer# _opts#]

@@ -3,9 +3,10 @@
   :url          "http://github/thinktopic/aljabr"
   :license      {:name "Apache Software License 2.0"
                  :url "http://www.apache.org/licenses/LICENSE-2.0"}
-  :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.7.228"]
+  :dependencies [[org.clojure/clojure "1.10.1-beta2"]
+                 [org.clojure/clojurescript "1.10.439"]
                  [net.mikera/core.matrix "0.51.0"]
+                 [javax.xml.bind/jaxb-api "2.4.0-b180830.0359"]
                  [thi.ng/typedarrays "0.1.2"]]
 
   :plugins      [[lein-cljsbuild "1.0.6"]
